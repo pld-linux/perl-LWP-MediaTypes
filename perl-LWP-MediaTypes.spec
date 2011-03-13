@@ -1,0 +1,65 @@
+#
+# Conditional build:
+%bcond_without	tests		# do not perform "make test"
+#
+%define		pdir	LWP
+%define		pnam	MediaTypes
+%include	/usr/lib/rpm/macros.perl
+Summary:	LWP::MediaTypes - guess media type for a file or a URL
+Summary(pl.UTF-8):	LWP::MediaTypes - zgadywanie typu zawartości dla pliku lub URL-a
+Name:		perl-LWP-MediaTypes
+Version:	6.01
+Release:	1
+# same as perl
+License:	GPL v1+ or Artistic
+Group:		Development/Languages/Perl
+Source0:	http://www.cpan.org/modules/by-module/LWP/%{pdir}-%{pnam}-%{version}.tar.gz
+# Source0-md5:	3cd1ccb774867b5b20e672981b230db6
+URL:		http://search.cpan.org/dist/LWP-MediaTypes/
+BuildRequires:	perl-devel >= 1:5.8.8
+BuildRequires:	rpm-perlprov >= 4.1-13
+Conflicts:	perl-libwww < 6
+BuildArch:	noarch
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%description
+This module provides functions for handling media (also known as MIME)
+types and encodings. The mapping from file extensions to media types
+is defined by the media.types file. If the ~/.media.types file exists
+it is used instead. For backwards compatibility the module will also
+look for ~/.mime.types.
+
+%description -l pl.UTF-8
+Ten moduł udostępnia funkcje do obsługi typów zawartości (znanych też
+jako typy MIME) plików oraz ich kodowań. Odwzorowanie rozszerzeń
+plików na typy zawartości jest definiowane w pliku media.types; jeśli
+istnieje plik ~/.media.types, jest on używany zamiast domyślnego
+pliku. Dla kompatybilności wstecznej moduł sprawdza także plik
+~/.mime.types.
+
+%prep
+%setup -q -n %{pdir}-%{pnam}-%{version}
+
+%build
+%{__perl} Makefile.PL \
+	INSTALLDIRS=vendor
+%{__make}
+
+%{?with_tests:%{__make} test}
+
+%install
+rm -rf $RPM_BUILD_ROOT
+
+%{__make} pure_install \
+	DESTDIR=$RPM_BUILD_ROOT
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%files
+%defattr(644,root,root,755)
+%doc Changes
+%dir %{perl_vendorlib}/LWP
+%{perl_vendorlib}/LWP/MediaTypes.pm
+%{perl_vendorlib}/LWP/media.types
+%{_mandir}/man3/LWP::MediaTypes.3pm*
