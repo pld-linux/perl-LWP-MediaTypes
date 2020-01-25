@@ -4,7 +4,6 @@
 #
 %define		pdir	LWP
 %define		pnam	MediaTypes
-%include	/usr/lib/rpm/macros.perl
 Summary:	LWP::MediaTypes - guess media type for a file or a URL
 Summary(pl.UTF-8):	LWP::MediaTypes - zgadywanie typu zawartości dla pliku lub URL-a
 Name:		perl-LWP-MediaTypes
