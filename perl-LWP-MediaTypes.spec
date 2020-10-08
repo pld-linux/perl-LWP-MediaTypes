@@ -1,6 +1,6 @@
 #
 # Conditional build:
-%bcond_without	tests		# do not perform "make test"
+%bcond_without	tests	# unit tests
 #
 %define		pdir	LWP
 %define		pnam	MediaTypes
@@ -14,9 +14,15 @@ License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/LWP/%{pdir}-%{pnam}-%{version}.tar.gz
 # Source0-md5:	84b799a90c0d2ce52897a7cb4c0478d0
-URL:		http://search.cpan.org/dist/LWP-MediaTypes/
+URL:		https://metacpan.org/release/LWP-MediaTypes
+%if %{with tests}
+BuildRequires:	perl-Scalar-List-Utils
+BuildRequires:	perl-Test-Fatal
+BuildRequires:	perl-Test-Simple
+%endif
 BuildRequires:	perl-devel >= 1:5.8.8
 BuildRequires:	rpm-perlprov >= 4.1-13
+BuildRequires:	rpmbuild(macros) >= 1.745
 Conflicts:	perl-libwww < 6
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
