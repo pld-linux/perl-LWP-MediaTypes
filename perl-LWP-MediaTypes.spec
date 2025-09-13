@@ -12,9 +12,9 @@ Release:	1
 # same as perl
 License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
-Source0:	http://www.cpan.org/modules/by-module/LWP/%{pdir}-%{pnam}-%{version}.tar.gz
+Source0:	https://www.cpan.org/modules/by-module/LWP/%{pdir}-%{pnam}-%{version}.tar.gz
 # Source0-md5:	84b799a90c0d2ce52897a7cb4c0478d0
-URL:		https://metacpan.org/release/LWP-MediaTypes
+URL:		https://metacpan.org/dist/LWP-MediaTypes
 %if %{with tests}
 BuildRequires:	perl-Scalar-List-Utils
 BuildRequires:	perl-Test-Fatal
