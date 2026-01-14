@@ -8,7 +8,7 @@ Summary:	LWP::MediaTypes - guess media type for a file or a URL
 Summary(pl.UTF-8):	LWP::MediaTypes - zgadywanie typu zawartości dla pliku lub URL-a
 Name:		perl-LWP-MediaTypes
 Version:	6.04
-Release:	1
+Release:	2
 # same as perl
 License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
